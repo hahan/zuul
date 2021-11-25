@@ -151,6 +151,7 @@ public class ClientConnectionsShutdown
         }
         catch (InterruptedException ie) {
             LOG.warn("Interrupted while shutting down client channels");
+            throw ie;
         }
     }
 }
