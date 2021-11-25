@@ -149,8 +149,8 @@ public class ClientConnectionsShutdown
             combinedClosePromise.await(5, TimeUnit.SECONDS);
             LOG.warn(forceCloseFutures.size() + " client channels closed.");
         }
-        catch (InterruptedException ie) {
-            LOG.warn("Interrupted while shutting down client channels");
-        }
+        //catch (InterruptedException ie) {
+        //    LOG.warn("Interrupted while shutting down client channels");
+        //}
     }
 }
