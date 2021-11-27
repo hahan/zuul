@@ -49,9 +49,10 @@ public final class ElbProxyProtocolChannelHandler extends ChannelInboundHandlerA
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        if (withProxyProtocol && isHAPMDetected(msg)) {
-            ctx.pipeline().addAfter(NAME, null, new HAProxyMessageChannelHandler())
+        if (withProxyProtocol && isHAPMDetected(msg) && ctx != null) {
+                ctx.pipeline().addAfter(NAME, null, new HAProxyMessageChannelHandler())
                     .replace(this, null, new HAProxyMessageDecoder());
+            
         } else {
             if (withProxyProtocol) {
                 // This likely means initialization was requested with proxy protocol, but we failed to decode the message
